@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 670406744}
   - component: {fileID: 670406743}
   - component: {fileID: 670406746}
-  - component: {fileID: 670406748}
+  - component: {fileID: 670406747}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &670406748
+--- !u!114 &670406747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -538,10 +538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba1fdb2975c38e419074eee6ad33ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 1, z: 0}
-  startRotation: {x: 0, y: 0, z: 0, w: 1}
   verticalSpeed: 10
-  sensitivity: 2.5
+  rotationSensitivity: 250
+  scrollSensitivity: 5000
 --- !u!1 &843423549
 GameObject:
   m_ObjectHideFlags: 0

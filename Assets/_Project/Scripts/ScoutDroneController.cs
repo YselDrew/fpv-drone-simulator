@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoutDroneController : MonoBehaviour {
-  [SerializeField] float verticalSpeed = 5f;
-  [SerializeField] float sensitivity = 1f;
+  [SerializeField] int verticalSpeed = 10;
+  [SerializeField] int rotationSensitivity = 250;
+  [SerializeField] int scrollSensitivity = 5000;
 
   Vector3 startPosition = new Vector3(25, 1, 10);
   Quaternion startRotation = Quaternion.Euler(0, 0, 0);
 
-  Transform cameraTransform = Camera.main.transform;
   Vector2 cameraRotation;
 
   void Start() {
@@ -22,11 +22,12 @@ public class ScoutDroneController : MonoBehaviour {
   void Update() {
     MoveDrone();
     RotateDrone();
+    ZoomView();
   }
 
   void RotateDrone() {
-    cameraRotation.x += Input.GetAxis("Mouse X") * sensitivity;
-    cameraRotation.y += Input.GetAxis("Mouse Y") * sensitivity;
+    cameraRotation.x += Input.GetAxis("Mouse X") * rotationSensitivity * Time.deltaTime;
+    cameraRotation.y += Input.GetAxis("Mouse Y") * rotationSensitivity * Time.deltaTime;
 
     transform.localRotation = Quaternion.Euler(
       -cameraRotation.y, // why -y on x???
@@ -49,7 +50,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   void MoveForward(int direction) {
     Vector3 cameraForward = Vector3.ProjectOnPlane(
-      cameraTransform.forward,
+      Camera.main.transform.forward,
       Vector3.up
     ).normalized;
 
@@ -57,10 +58,10 @@ public class ScoutDroneController : MonoBehaviour {
       + (cameraForward * verticalSpeed * Time.deltaTime * direction);
 
     /* 
-			When drone rotates camera
-			we don't want to move drone
-			in horizontal axis (up/down)
-		*/
+      When drone rotates camera
+      we don't want to move drone
+      in horizontal axis (up/down)
+    */ 
     float lockedY = transform.localPosition.y;
 
     transform.localPosition = new Vector3(
@@ -72,7 +73,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   void MoveAside(int direction) {
     Vector3 cameraRight = Vector3.ProjectOnPlane(
-      cameraTransform.right,
+      Camera.main.transform.right,
       Vector3.up
     ).normalized;
 
@@ -88,5 +89,10 @@ public class ScoutDroneController : MonoBehaviour {
       updatedY,
       transform.localPosition.z
     );
+  }
+
+  void ZoomView() {
+    float zoom = Input.GetAxis("Mouse ScrollWheel") * scrollSensitivity * Time.deltaTime;
+    Camera.main.fieldOfView -= zoom;
   }
 }
