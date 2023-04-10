@@ -5,7 +5,10 @@ using UnityEngine;
 public class ScoutDroneController : MonoBehaviour {
   [SerializeField] int verticalSpeed = 10;
   [SerializeField] int rotationSensitivity = 250;
-  [SerializeField] int scrollSensitivity = 5000;
+
+  [SerializeField] int scrollSensitivity = 7000;
+  [SerializeField, Tooltip("The lower value, the highest zoom")] int minFieldOfView = 30;
+  int maxFieldOfView = 60;
 
   Vector3 startPosition = new Vector3(25, 1, 10);
   Quaternion startRotation = Quaternion.Euler(0, 0, 0);
@@ -26,8 +29,19 @@ public class ScoutDroneController : MonoBehaviour {
   }
 
   void RotateDrone() {
+    /* 
+      If I'm using 90/-90 degrees
+      MoveForward function stops working
+      for some reason. I guess, vector
+      projected on plane doesn't 
+      point to any direction. 
+    */
+    float maxRotation = 89.9f;
+
     cameraRotation.x += Input.GetAxis("Mouse X") * rotationSensitivity * Time.deltaTime;
     cameraRotation.y += Input.GetAxis("Mouse Y") * rotationSensitivity * Time.deltaTime;
+
+    cameraRotation.y = Mathf.Clamp(cameraRotation.y, -maxRotation, maxRotation);
 
     transform.localRotation = Quaternion.Euler(
       -cameraRotation.y, // why -y on x???
@@ -59,9 +73,9 @@ public class ScoutDroneController : MonoBehaviour {
 
     /* 
       When drone rotates camera
-      we don't want to move drone
+      we don't want to MOVE drone
       in horizontal axis (up/down)
-    */ 
+    */
     float lockedY = transform.localPosition.y;
 
     transform.localPosition = new Vector3(
@@ -93,6 +107,12 @@ public class ScoutDroneController : MonoBehaviour {
 
   void ZoomView() {
     float zoom = Input.GetAxis("Mouse ScrollWheel") * scrollSensitivity * Time.deltaTime;
-    Camera.main.fieldOfView -= zoom;
+    float cameraFieldOfView = Camera.main.fieldOfView - zoom;
+
+    Camera.main.fieldOfView = Mathf.Clamp(
+      cameraFieldOfView,
+      minFieldOfView,
+      maxFieldOfView
+    );
   }
 }
