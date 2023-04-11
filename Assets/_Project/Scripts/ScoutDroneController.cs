@@ -17,9 +17,6 @@ public class ScoutDroneController : MonoBehaviour {
 
   void Start() {
     Cursor.lockState = CursorLockMode.Locked;
-
-    transform.position = startPosition;
-    transform.localRotation = startRotation;
   }
 
   void Update() {
