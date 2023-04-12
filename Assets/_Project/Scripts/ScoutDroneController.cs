@@ -8,6 +8,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   [SerializeField] int scrollSensitivity = 7000;
   [SerializeField, Tooltip("The lower value, the highest zoom")] int minFieldOfView = 30;
+  Camera droneCamera;
   int maxFieldOfView = 60;
 
   Vector3 startPosition = new Vector3(25, 1, 10);
@@ -17,6 +18,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   void Start() {
     Cursor.lockState = CursorLockMode.Locked;
+    droneCamera = this.GetComponent<Camera>();
   }
 
   void Update() {
@@ -61,7 +63,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   void MoveForward(int direction) {
     Vector3 cameraForward = Vector3.ProjectOnPlane(
-      Camera.main.transform.forward,
+      droneCamera.transform.forward,
       Vector3.up
     ).normalized;
 
@@ -84,7 +86,7 @@ public class ScoutDroneController : MonoBehaviour {
 
   void MoveAside(int direction) {
     Vector3 cameraRight = Vector3.ProjectOnPlane(
-      Camera.main.transform.right,
+      droneCamera.transform.right,
       Vector3.up
     ).normalized;
 
@@ -104,9 +106,9 @@ public class ScoutDroneController : MonoBehaviour {
 
   void ZoomView() {
     float zoom = Input.GetAxis("Mouse ScrollWheel") * scrollSensitivity * Time.deltaTime;
-    float cameraFieldOfView = Camera.main.fieldOfView - zoom;
+    float cameraFieldOfView = droneCamera.fieldOfView - zoom;
 
-    Camera.main.fieldOfView = Mathf.Clamp(
+    droneCamera.fieldOfView = Mathf.Clamp(
       cameraFieldOfView,
       minFieldOfView,
       maxFieldOfView
