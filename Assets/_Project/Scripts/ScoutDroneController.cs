@@ -5,16 +5,15 @@ using UnityEngine;
 public class ScoutDroneController : MonoBehaviour {
   [SerializeField] int verticalSpeed = 10;
   [SerializeField] int rotationSensitivity = 250;
-
   [SerializeField] int scrollSensitivity = 7000;
   [SerializeField, Tooltip("The lower value, the highest zoom")] int minFieldOfView = 30;
-  Camera droneCamera;
   int maxFieldOfView = 60;
+
+  Camera droneCamera;
+  Vector2 cameraRotation;
 
   Vector3 startPosition = new Vector3(25, 1, 10);
   Quaternion startRotation = Quaternion.Euler(0, 0, 0);
-
-  Vector2 cameraRotation;
 
   void Start() {
     Cursor.lockState = CursorLockMode.Locked;
