@@ -6,13 +6,15 @@ public class DroneSwitch : MonoBehaviour {
   [SerializeField] GameObject scoutDrone;
   [SerializeField] GameObject kamikazeDrone;
 
-  bool isDroneActive = false;
+  bool isDroneActive = true;
 
   void Start() {
     ActivateDrone();
   }
 
   void Update() {
+    if (kamikazeDrone == null) scoutDrone.SetActive(true);
+
     if (Input.GetKeyDown(KeyCode.E)) SwitchDrone();
   }
 
