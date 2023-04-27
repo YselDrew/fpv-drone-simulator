@@ -11,7 +11,7 @@ public class KamikazeDroneController : MonoBehaviour {
   Camera droneCamera;
   Vector2 cameraRotation;
 
-  void Start() { 
+  void Start() {
     Cursor.lockState = CursorLockMode.Locked;
     droneCamera = this.GetComponent<Camera>();
   }
@@ -31,12 +31,12 @@ public class KamikazeDroneController : MonoBehaviour {
     up or down. I don't know why.
   */
   void RotateDrone() {
-    float updatedRotationX = 
-      transform.localEulerAngles.x - 
+    float updatedRotationX =
+      transform.localEulerAngles.x -
       (Input.GetAxis("Mouse Y") * rotationSensitivity * Time.deltaTime);
 
-    float updatedRotationY = 
-      transform.localEulerAngles.y + 
+    float updatedRotationY =
+      transform.localEulerAngles.y +
       (Input.GetAxis("Mouse X") * rotationSensitivity * Time.deltaTime);
 
     transform.localEulerAngles = new Vector3(
@@ -47,11 +47,7 @@ public class KamikazeDroneController : MonoBehaviour {
   }
 
   void MoveDrone() {
-    transform.localPosition += 
+    transform.localPosition +=
       droneCamera.transform.forward * droneSpeed * Time.deltaTime;
-  }
-
-  void OnTriggerEnter(Collider other) {
-    Destroy(gameObject);
   }
 }

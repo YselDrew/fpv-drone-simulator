@@ -6,6 +6,9 @@ TagManager:
   tags:
   - KamikazeDrone
   - Enemy
+  - PlayingZone
+  - DangerArea
+  - Environment
   layers:
   - Default
   - TransparentFX
