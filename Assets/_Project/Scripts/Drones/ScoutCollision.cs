@@ -18,23 +18,18 @@ public class ScoutCollision : MonoBehaviour {
     rb = this.GetComponent<Rigidbody>();
     boxCollider = this.GetComponent<BoxCollider>();
 
+    // workaround
     GameObject spotZone = GameObject.FindWithTag(spotZoneTag).gameObject;
     spotZoneCollider = spotZone.GetComponent<SphereCollider>();
   }
 
   private void OnTriggerEnter(Collider collider) {
-    if (collider.gameObject.CompareTag(spotZoneTag)) Invoke("DropDrone", 3);
-
     if (
       collider.gameObject.CompareTag(environmentTag) ||
       collider.gameObject.CompareTag(enemyTag)
     ) {
       DropDrone();
     }
-  }
-
-  void OnTriggerExit(Collider collider) {
-    if (collider.gameObject.CompareTag(spotZoneTag)) CancelInvoke();
   }
 
   void DropDrone() {

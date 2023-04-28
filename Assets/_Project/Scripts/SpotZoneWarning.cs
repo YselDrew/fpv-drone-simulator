@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* 
+  Maybe this logic should be
+  part of ScoutCollision.cs?
+*/
 public class SpotZoneWarning : MonoBehaviour {
   [SerializeField] GameObject spotZoneText;
 

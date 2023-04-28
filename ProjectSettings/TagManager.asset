@@ -10,6 +10,7 @@ TagManager:
   - DangerArea
   - Environment
   - SpotZone
+  - ScoutDrone
   layers:
   - Default
   - TransparentFX

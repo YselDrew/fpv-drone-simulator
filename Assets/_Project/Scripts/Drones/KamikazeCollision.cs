@@ -8,6 +8,11 @@ public class KamikazeCollision : MonoBehaviour {
   string enemyTag = "Enemy";
   string environmentTag = "Environment";
 
+  /* 
+    This and same method in ScoutCollision
+    may be good candidates for abstract 
+    class method
+  */
   void OnTriggerEnter(Collider collider) {
     if (
       collider.gameObject.CompareTag(enemyTag) ||
