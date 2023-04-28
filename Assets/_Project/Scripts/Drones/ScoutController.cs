@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoutDroneController : MonoBehaviour {
-  [SerializeField] int verticalSpeed = 10;
+public class ScoutController : MonoBehaviour {
+  [SerializeField] int speed = 10;
   [SerializeField] int rotationSensitivity = 250;
   [SerializeField] int scrollSensitivity = 7000;
   [SerializeField, Tooltip("The lower value, the highest zoom")] int minFieldOfView = 30;
@@ -67,7 +67,7 @@ public class ScoutDroneController : MonoBehaviour {
     ).normalized;
 
     Vector3 updatedPosition = transform.localPosition
-      + (cameraForward * verticalSpeed * Time.deltaTime * direction);
+      + (cameraForward * speed * Time.deltaTime * direction);
 
     /* 
       When drone rotates camera
@@ -89,12 +89,12 @@ public class ScoutDroneController : MonoBehaviour {
       Vector3.up
     ).normalized;
 
-    transform.localPosition += cameraRight * verticalSpeed * Time.deltaTime * direction;
+    transform.localPosition += cameraRight * speed * Time.deltaTime * direction;
   }
 
   void MoveVertical(int direction) {
     float updatedY = transform.localPosition.y
-      + (verticalSpeed * Time.deltaTime * direction);
+      + (speed * Time.deltaTime * direction);
 
     transform.localPosition = new Vector3(
       transform.localPosition.x,

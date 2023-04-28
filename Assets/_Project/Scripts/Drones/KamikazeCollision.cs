@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class KamikazeDroneCollision : MonoBehaviour {
+public class KamikazeCollision : MonoBehaviour {
   [SerializeField] ParticleSystem explosion;
 
   string enemyTag = "Enemy";
@@ -8,7 +10,7 @@ public class KamikazeDroneCollision : MonoBehaviour {
 
   void OnTriggerEnter(Collider collider) {
     if (
-      collider.gameObject.CompareTag(enemyTag) || 
+      collider.gameObject.CompareTag(enemyTag) ||
       collider.gameObject.CompareTag(environmentTag)
     ) {
       DisableDrone();

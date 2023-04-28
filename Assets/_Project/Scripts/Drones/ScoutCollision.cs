@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoutDroneCollisions : MonoBehaviour {
-  ScoutDroneController scoutController;
+public class ScoutCollision : MonoBehaviour {
+  ScoutController scoutController;
   Rigidbody rb;
   BoxCollider boxCollider;
 
@@ -12,7 +14,7 @@ public class ScoutDroneCollisions : MonoBehaviour {
   string environmentTag = "Environment";
 
   void Start() {
-    scoutController = this.GetComponent<ScoutDroneController>();
+    scoutController = this.GetComponent<ScoutController>();
     rb = this.GetComponent<Rigidbody>();
     boxCollider = this.GetComponent<BoxCollider>();
 

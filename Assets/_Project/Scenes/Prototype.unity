@@ -649,14 +649,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1308285247229902001, guid: d2497361114c28847b824219fa756b58, type: 3}
-      propertyPath: m_Name
-      value: SpotZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 1308285247229902001, guid: d2497361114c28847b824219fa756b58, type: 3}
-      propertyPath: m_TagString
-      value: SpotZone
-      objectReference: {fileID: 0}
     - target: {fileID: 3614771595336473094, guid: d2497361114c28847b824219fa756b58, type: 3}
       propertyPath: m_Name
       value: P_enemy_t_72
@@ -914,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba1fdb2975c38e419074eee6ad33ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 10
+  speed: 10
   rotationSensitivity: 250
   scrollSensitivity: 7000
   minFieldOfView: 30

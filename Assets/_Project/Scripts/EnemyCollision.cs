@@ -1,15 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour {
   [SerializeField] ParticleSystem smoke;
+  [SerializeField] GameObject spotZone;
 
   SphereCollider spotZoneCollider;
 
   string kamikazeDroneTag = "KamikazeDrone";
-  string spotZoneTag = "SpotZone";
 
   void Start() {
-    GameObject spotZone = GameObject.FindWithTag(spotZoneTag).gameObject;
     spotZoneCollider = spotZone.GetComponent<SphereCollider>();
   }
 

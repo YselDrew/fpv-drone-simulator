@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KamikazeDroneController : MonoBehaviour {
+public class KamikazeController : MonoBehaviour {
   [SerializeField] float droneSpeed = 15f;
   [SerializeField] int rotationSensitivity = 250;
 

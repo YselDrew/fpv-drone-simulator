@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour {
     int prototypeSceneIndex = 0;
 
-  // Update is called once per frame
   void Update() {
     if (Input.GetKey(KeyCode.R)) SceneManager.LoadScene(prototypeSceneIndex);
 

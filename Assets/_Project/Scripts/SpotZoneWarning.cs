@@ -1,9 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ShowDangerAreaWarning : MonoBehaviour {
-  [SerializeField] GameObject spotZoneWarningText;
+public class SpotZoneWarning : MonoBehaviour {
+  [SerializeField] GameObject spotZoneText;
+
+  Text warningText;
 
   string spotZoneTag = "SpotZone";
+
+  void Start() {
+    warningText = spotZoneText.GetComponent<Text>();
+  }
 
   void OnTriggerEnter(Collider collider) {
     if (collider.gameObject.CompareTag(spotZoneTag)) {
@@ -18,6 +27,6 @@ public class ShowDangerAreaWarning : MonoBehaviour {
   }
 
   void toggleSpotZoneWarning(bool isActive) {
-    spotZoneWarningText.SetActive(isActive);
+    warningText.enabled = isActive;
   }
 }

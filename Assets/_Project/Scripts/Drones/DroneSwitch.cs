@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneSwitch : MonoBehaviour {
@@ -25,7 +27,7 @@ public class DroneSwitch : MonoBehaviour {
   void SwitchDrone() {
     /* 
       Toggle is only for development purposes.
-      In final version you won't be able
+      In final version player won't be able
       switch back until kamikaze drone will be 
       destroyed
     */
