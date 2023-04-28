@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour {
   [SerializeField] ParticleSystem smoke;
 
-  SphereCollider dangerAreaCollider;
+  SphereCollider spotZoneCollider;
 
   string kamikazeDroneTag = "KamikazeDrone";
-  string dangerAreaTag = "DangerArea";
+  string spotZoneTag = "SpotZone";
 
   void Start() {
-    GameObject dangerArea = GameObject.FindWithTag(dangerAreaTag).gameObject;
-    dangerAreaCollider = dangerArea.GetComponent<SphereCollider>();
+    GameObject spotZone = GameObject.FindWithTag(spotZoneTag).gameObject;
+    spotZoneCollider = spotZone.GetComponent<SphereCollider>();
   }
 
   void OnTriggerEnter(Collider collider) {
@@ -22,7 +20,7 @@ public class EnemyCollision : MonoBehaviour {
   }
 
   void DisableEnemy() {
-    dangerAreaCollider.enabled = false;
+    spotZoneCollider.enabled = false;
 
     smoke.Play();
   }

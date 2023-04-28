@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KamikazeDroneCollision : MonoBehaviour {
@@ -9,21 +7,22 @@ public class KamikazeDroneCollision : MonoBehaviour {
   string environmentTag = "Environment";
 
   void OnTriggerEnter(Collider collider) {
-    if (collider.gameObject.CompareTag(enemyTag)) {
-      Debug.Log("Enemy Collision");
-      Explode();
-    }
-
-    if (collider.gameObject.CompareTag(environmentTag)) {
-      Debug.Log("You've hit environment");
-      Explode();
+    if (
+      collider.gameObject.CompareTag(enemyTag) || 
+      collider.gameObject.CompareTag(environmentTag)
+    ) {
+      DisableDrone();
     }
   }
 
-  void Explode() {
-    Quaternion defaultExplosionRotation = Quaternion.Euler(-90, 0, 0);
-    Instantiate(explosion, transform.position, defaultExplosionRotation).Play();
+  void DisableDrone() {
+    PlayExplode();
 
     Destroy(gameObject);
+  }
+
+  void PlayExplode() {
+    Quaternion defaultExplosionRotation = Quaternion.Euler(-90, 0, 0);
+    Instantiate(explosion, transform.position, defaultExplosionRotation).Play();
   }
 }

@@ -54,6 +54,8 @@ sysinfo.txt
 
 # Builds
 Build
+*.zip
+*.rar
 *.apk
 *.unitypackage
 

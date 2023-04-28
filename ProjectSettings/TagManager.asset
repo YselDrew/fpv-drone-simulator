@@ -9,6 +9,7 @@ TagManager:
   - PlayingZone
   - DangerArea
   - Environment
+  - SpotZone
   layers:
   - Default
   - TransparentFX

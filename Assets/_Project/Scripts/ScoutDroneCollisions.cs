@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoutDroneCollisions : MonoBehaviour {
@@ -7,10 +5,10 @@ public class ScoutDroneCollisions : MonoBehaviour {
   Rigidbody rb;
   BoxCollider boxCollider;
 
-  SphereCollider dangerAreaCollider;
+  SphereCollider spotZoneCollider;
 
   string enemyTag = "Enemy";
-  string dangerAreaTag = "DangerArea";
+  string spotZoneTag = "SpotZone";
   string environmentTag = "Environment";
 
   void Start() {
@@ -18,43 +16,33 @@ public class ScoutDroneCollisions : MonoBehaviour {
     rb = this.GetComponent<Rigidbody>();
     boxCollider = this.GetComponent<BoxCollider>();
 
-    GameObject dangerArea = GameObject.FindWithTag(dangerAreaTag).gameObject;
-    dangerAreaCollider = dangerArea.GetComponent<SphereCollider>();
+    GameObject spotZone = GameObject.FindWithTag(spotZoneTag).gameObject;
+    spotZoneCollider = spotZone.GetComponent<SphereCollider>();
   }
 
   private void OnTriggerEnter(Collider collider) {
-    if (collider.gameObject.CompareTag(dangerAreaTag)) {
-      Debug.Log("You're in dangerous area");
-      Invoke("DropDrone", 3);
-    }
+    if (collider.gameObject.CompareTag(spotZoneTag)) Invoke("DropDrone", 3);
 
-    /* 
-      This requires refactoring
-    */
     if (
       collider.gameObject.CompareTag(environmentTag) ||
       collider.gameObject.CompareTag(enemyTag)
     ) {
-      Debug.Log("You've hit environment");
       DropDrone();
     }
   }
 
   void OnTriggerExit(Collider collider) {
-    if (collider.gameObject.CompareTag(dangerAreaTag)) {
-      Debug.Log("You're leaving danger zone");
-      CancelInvoke();
-    }
+    if (collider.gameObject.CompareTag(spotZoneTag)) CancelInvoke();
   }
 
   void DropDrone() {
     /* 
-      area collider is permanently-temporary 
+      disabling area collider is permanently-temporary 
       workaround, since I have no idea
       how to fix drone jittering when
-      its being destroyd inside danger area
+      its being destroyed inside spot zone 
     */
-    dangerAreaCollider.enabled = false;
+    spotZoneCollider.enabled = false;
 
     scoutController.enabled = false;
 

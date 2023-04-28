@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneSwitch : MonoBehaviour {
@@ -13,9 +11,10 @@ public class DroneSwitch : MonoBehaviour {
   }
 
   void Update() {
-    if (kamikazeDrone == null) scoutDrone.SetActive(true);
+    bool isKamikazeDestroyed = kamikazeDrone == null;
 
-    if (Input.GetKeyDown(KeyCode.E)) SwitchDrone();
+    if (isKamikazeDestroyed) scoutDrone.SetActive(true);
+    if (Input.GetKeyDown(KeyCode.E) && !isKamikazeDestroyed) SwitchDrone();
   }
 
   void ActivateDrone() {
