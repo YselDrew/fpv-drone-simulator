@@ -34,6 +34,7 @@ public class AttackingProjectile: MonoBehaviour {
         dronePosition.z
     );
 
+    gameObject.GetComponent<SphereCollider>().enabled = false;
     Destroy(projectile, 1f);
   }
 }
