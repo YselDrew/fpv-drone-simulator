@@ -9,6 +9,7 @@ public class ScoutCollision : MonoBehaviour {
 
   string enemyTag = "Enemy";
   string environmentTag = "Environment";
+  string mapBoundariesTag = "MapBoundaries";
 
   void Start() {
     scoutController = this.GetComponent<ScoutController>();
@@ -21,11 +22,17 @@ public class ScoutCollision : MonoBehaviour {
       collider.gameObject.CompareTag(environmentTag) ||
       collider.gameObject.CompareTag(enemyTag)
     ) {
-      DropDrone();
+      DisableDrone();
     }
+
+    if(collider.gameObject.CompareTag(mapBoundariesTag)) CancelInvoke();
   }
 
-  void DropDrone() {
+  private void OnTriggerExit(Collider collider) {
+    if(collider.gameObject.CompareTag(mapBoundariesTag)) Invoke("DisableDrone", 2f);
+  }
+
+  void DisableDrone() {
     scoutController.enabled = false;
 
     boxCollider.isTrigger = false;

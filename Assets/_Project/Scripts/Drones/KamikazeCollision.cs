@@ -7,6 +7,7 @@ public class KamikazeCollision : MonoBehaviour {
 
   string enemyTag = "Enemy";
   string environmentTag = "Environment";
+  string mapBoundariesTag = "MapBoundaries";
 
   /* 
     This and same method in ScoutCollision
@@ -20,6 +21,10 @@ public class KamikazeCollision : MonoBehaviour {
     ) {
       DisableDrone();
     }
+  }
+
+  private void OnTriggerExit(Collider collider) {
+    if(collider.gameObject.CompareTag(mapBoundariesTag)) DisableDrone();
   }
 
   void DisableDrone() {

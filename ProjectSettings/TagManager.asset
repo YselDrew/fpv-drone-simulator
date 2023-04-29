@@ -6,11 +6,11 @@ TagManager:
   tags:
   - KamikazeDrone
   - Enemy
-  - PlayingZone
   - DangerArea
   - Environment
   - SpotZone
   - ScoutDrone
+  - MapBoundaries
   layers:
   - Default
   - TransparentFX
