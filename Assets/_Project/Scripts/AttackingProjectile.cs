@@ -5,13 +5,13 @@ using UnityEngine;
 public class AttackingProjectile: MonoBehaviour {
   [SerializeField] GameObject projectile;
   [SerializeField] float offset = 0.5f;
-  [SerializeField] int timeToLive = 3;
+  [SerializeField] int timeBeforeShoot = 3;
 
   Vector3 dronePosition;
 
   void OnTriggerEnter(Collider collider) {
     if (collider.gameObject.CompareTag("ScoutDrone")) {
-      Invoke("ChangeProjectilePosition", timeToLive);
+      Invoke("ChangeProjectilePosition", timeBeforeShoot);
     }
   }
 
