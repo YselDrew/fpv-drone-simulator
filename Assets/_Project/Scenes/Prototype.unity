@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoutDrone: {fileID: 1197463519}
+  kamikazeDrone: {fileID: 1473354644}
 --- !u!1001 &767560414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2098,7 +2099,7 @@ GameObject:
   - component: {fileID: 2050494129}
   - component: {fileID: 2050494128}
   m_Layer: 0
-  m_Name: Debug
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
