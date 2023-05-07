@@ -1,4 +1,3 @@
-### FPV Drone Simulator
-Mini-game about drones.
+### Project has moved to BitBucket
 
-Current Build: [LINK](https://yseldrew.itch.io/fpv-drone-simulator-prototype-demo)
+However, you can find current build right here: [FPV Drone Simulator](https://yseldrew.itch.io/fpv-drone-simulator-prototype-demo)
